@@ -16,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class PostItemAdapter extends ArrayAdapter<PostData> {
@@ -34,7 +33,6 @@ public class PostItemAdapter extends ArrayAdapter<PostData> {
 	static class ViewHolder {
 		TextView postTitleView;
 		TextView postDateView;
-		ImageView postThumbView;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -44,8 +42,6 @@ public class PostItemAdapter extends ArrayAdapter<PostData> {
 			convertView = inflater.inflate(R.layout.postitem, null);
 
 			viewHolder = new ViewHolder();
-			viewHolder.postThumbView = (ImageView) convertView
-					.findViewById(R.id.postThumb);
 			viewHolder.postTitleView = (TextView) convertView
 					.findViewById(R.id.postTitleLabel);
 			viewHolder.postDateView = (TextView) convertView
@@ -55,10 +51,6 @@ public class PostItemAdapter extends ArrayAdapter<PostData> {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 
-		if (datas.get(position).postThumbUrl == null) {
-			viewHolder.postThumbView
-					.setImageResource(R.drawable.postthumb_loading);
-		}
 
 		viewHolder.postTitleView.setText(datas.get(position).postTitle);
 		viewHolder.postDateView.setText(datas.get(position).postDate);
