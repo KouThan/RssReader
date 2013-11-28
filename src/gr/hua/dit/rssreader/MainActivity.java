@@ -87,16 +87,12 @@ public class MainActivity extends Activity implements RefreshableInterface {
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
 			//Create the list data view
-			Log.w("myApp","arg2=: " + arg2);
 			PostData data = listData.get(arg2 - 1);
 			
-			Log.w("myApp","arraylistitem: " + listData.get(arg2 - 1).postContent);
 			Log.w("myApp","postContent: " + data.postContent);
 			
 			Bundle postInfo = new Bundle();
 			postInfo.putString("content", data.postContent);
-			Log.w("myApp","sended: " + postInfo.getString("content"));     //edo exei thema
-			
 			if (postviewIntent == null) {
 				postviewIntent = new Intent(MainActivity.this,
 						PostViewActivity.class);
@@ -194,7 +190,6 @@ public class MainActivity extends Activity implements RefreshableInterface {
 							Date postDate = dateFormat.parse(pdData.postDate);
 							pdData.postDate = dateFormat.format(postDate);
 							postDataList.add(pdData);
-							Log.w("myApp","RETURNS: " + pdData.postContent);
 						} else {
 							currentTag = RSSXMLTag.IGNORETAG;
 						}
@@ -216,10 +211,8 @@ public class MainActivity extends Activity implements RefreshableInterface {
 								if (content.length() != 0) {
 									if (pdData.postLink != null) {
 										pdData.postLink += content;
-										Log.w("myApp", "link append");
 									} else {
 										pdData.postLink = content;
-										Log.w("myApp","added: " + content);
 										
 									}
 								}
