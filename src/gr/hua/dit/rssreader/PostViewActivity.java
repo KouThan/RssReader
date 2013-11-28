@@ -34,10 +34,7 @@ public class PostViewActivity extends Activity {
 		
 		String postContent = bundle.getString("content");
 		
-		//webview bug, need to convert this special character
-		Log.w("myApp","added: " + postContent);
-		if (bundle.isEmpty())
-			Log.w("myApp","Empty bundle");
+		
 		webView = (WebView) this.findViewById(R.id.webview);
 		webView.loadData(postContent, "text/html; charset=utf-8", "utf-8");
 	}

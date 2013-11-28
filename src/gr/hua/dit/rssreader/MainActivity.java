@@ -37,7 +37,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity implements RefreshableInterface {
 	private enum RSSXMLTag {
-		TITLE, DATE, LINK, CONTENT, GUID, IGNORETAG;
+		TITLE, DATE, LINK, CONTENT, ENCLOSURE, GUID, IGNORETAG;
 	}
 
 	private ArrayList<PostData> listData;
@@ -88,8 +88,6 @@ public class MainActivity extends Activity implements RefreshableInterface {
 				long arg3) {
 			//Create the list data view
 			PostData data = listData.get(arg2 - 1);
-			
-			Log.w("myApp","postContent: " + data.postContent);
 			
 			Bundle postInfo = new Bundle();
 			postInfo.putString("content", data.postContent);
@@ -155,7 +153,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 				Log.d("debug", "The response is: " + response);
 				is = connection.getInputStream();
 
-				// parse xml
+				// parse xml with custom handmade xml parser
 				XmlPullParserFactory factory = XmlPullParserFactory
 						.newInstance();
 				factory.setNamespaceAware(true);
@@ -164,7 +162,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 
 				int eventType = xpp.getEventType();
 				PostData pdData = null;
-				SimpleDateFormat dateFormat = new SimpleDateFormat(          //Change date format and locale
+				SimpleDateFormat dateFormat = new SimpleDateFormat(       
 						"EEE, DD MMM yyyy HH:mm:ss", Locale.US);
 				while (eventType != XmlPullParser.END_DOCUMENT) {
 					if (eventType == XmlPullParser.START_DOCUMENT) {
@@ -181,6 +179,8 @@ public class MainActivity extends Activity implements RefreshableInterface {
 							currentTag = RSSXMLTag.DATE;
 						} else if (xpp.getName().equals("description")) {
 							currentTag = RSSXMLTag.CONTENT;
+						} else if (xpp.getName().equals("enclosure")) {       
+							currentTag = RSSXMLTag.ENCLOSURE;
 						} else if (xpp.getName().equals("guid")) {
 							currentTag = RSSXMLTag.GUID;
 						}
@@ -232,6 +232,17 @@ public class MainActivity extends Activity implements RefreshableInterface {
 										pdData.postContent += content;
 									} else {
 										pdData.postContent = content;
+									}
+								}
+								break; 
+							case ENCLOSURE:   //doesn't work because of limitations of XmlPullParser
+								if (content.length() != 0) {
+									if (pdData.postEnclosure != null) {
+										pdData.postEnclosure += content;
+										Log.w("enclosure url", content);
+									} else {
+										pdData.postEnclosure = content;
+										Log.w("ElseEnclosure url", content);
 									}
 								}
 								break;
@@ -298,10 +309,10 @@ public class MainActivity extends Activity implements RefreshableInterface {
 
 				if (isRefreshLoading) {
 					listData.add(i, result.get(i));
-					Log.w("myApp","resultGet: " + result.get(i).postContent);
+					
 				} else {
 					listData.add(result.get(i));
-					Log.w("myApp","ElseResultGet: " + result.get(i).postContent);
+					
 				}
 			}
 
