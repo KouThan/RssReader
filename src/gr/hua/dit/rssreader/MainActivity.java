@@ -163,7 +163,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 
 				int eventType = xpp.getEventType();
 				PostData pdData = null;
-				SimpleDateFormat dateFormat = new SimpleDateFormat(
+				SimpleDateFormat dateFormat = new SimpleDateFormat(          //Change date format and locale
 						"EEE, DD MMM yyyy HH:mm:ss", Locale.US);
 				while (eventType != XmlPullParser.END_DOCUMENT) {
 					if (eventType == XmlPullParser.START_DOCUMENT) {
