@@ -33,8 +33,6 @@ public class RefreshableListView extends ListView implements OnScrollListener {
 	private RotateAnimation rotateAnimation;
 	private RotateAnimation reverseRotateAnimation;
 	private RefreshableInterface refreshDelegate;
-
-	private RelativeLayout footerLayout;
 	private ProgressBar footerProgressBar;
 	
 	private boolean isLoading;
@@ -153,8 +151,6 @@ public class RefreshableListView extends ListView implements OnScrollListener {
 				-1 * HEADER_HEIGHT, 0, headerRelativeLayout.getPaddingBottom());
 		this.addHeaderView(headerRelativeLayout, null, false);
 
-		footerLayout = (RelativeLayout) inflate(context, R.layout.refresh_footer_view, null);
-		footerProgressBar = (ProgressBar)footerLayout.findViewById(R.id.footer_progressBar);
 		
 		//isDragging = false;
 		currentState = STATE_PULL_TO_REFRESH;

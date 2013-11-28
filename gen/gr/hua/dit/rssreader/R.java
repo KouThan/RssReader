@@ -32,29 +32,25 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int actionAbout=0x7f09000e;
-        public static final int adsContainer=0x7f090000;
-        public static final int adsContainerInPostView=0x7f090005;
-        public static final int footer_progressBar=0x7f090008;
-        public static final int footer_tipsTextView=0x7f090007;
-        public static final int head_arrowImageView=0x7f09000c;
-        public static final int head_lastUpdatedDateTextView=0x7f09000b;
-        public static final int head_progressBar=0x7f09000d;
-        public static final int head_tipsTextView=0x7f09000a;
-        public static final int linearLayout1=0x7f090009;
+        public static final int actionAbout=0x7f09000b;
+        public static final int head_arrowImageView=0x7f090009;
+        public static final int head_lastUpdatedDateTextView=0x7f090008;
+        public static final int head_progressBar=0x7f09000a;
+        public static final int head_tipsTextView=0x7f090007;
+        public static final int linearLayout1=0x7f090006;
         public static final int postDateLabel=0x7f090004;
-        public static final int postListView=0x7f090001;
+        public static final int postListView=0x7f090000;
+        public static final int postThumb=0x7f090002;
         public static final int postTitleLabel=0x7f090003;
-        public static final int pull_refresh_list=0x7f090002;
-        public static final int webview=0x7f090006;
+        public static final int pull_refresh_list=0x7f090001;
+        public static final int webview=0x7f090005;
     }
     public static final class layout {
         public static final int activity_postlist=0x7f030000;
         public static final int activity_ptr_list=0x7f030001;
         public static final int postitem=0x7f030002;
         public static final int postview=0x7f030003;
-        public static final int refresh_footer_view=0x7f030004;
-        public static final int refresh_header_view=0x7f030005;
+        public static final int refresh_header_view=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f080000;
