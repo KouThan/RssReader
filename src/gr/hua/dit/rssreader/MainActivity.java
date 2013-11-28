@@ -87,11 +87,16 @@ public class MainActivity extends Activity implements RefreshableInterface {
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
 			//Create the list data view
+			Log.w("myApp","arg2=: " + arg2);
 			PostData data = listData.get(arg2 - 1);
-
+			
+			Log.w("myApp","arraylistitem: " + listData.get(arg2 - 1).postContent);
+			Log.w("myApp","postContent: " + data.postContent);
+			
 			Bundle postInfo = new Bundle();
 			postInfo.putString("content", data.postContent);
-
+			Log.w("myApp","sended: " + postInfo.getString("content"));     //edo exei thema
+			
 			if (postviewIntent == null) {
 				postviewIntent = new Intent(MainActivity.this,
 						PostViewActivity.class);
@@ -178,18 +183,18 @@ public class MainActivity extends Activity implements RefreshableInterface {
 							currentTag = RSSXMLTag.LINK;
 						} else if (xpp.getName().equals("pubDate")) {
 							currentTag = RSSXMLTag.DATE;
-						} else if (xpp.getName().equals("encoded")) {
+						} else if (xpp.getName().equals("description")) {
 							currentTag = RSSXMLTag.CONTENT;
 						} else if (xpp.getName().equals("guid")) {
 							currentTag = RSSXMLTag.GUID;
 						}
 					} else if (eventType == XmlPullParser.END_TAG) {
 						if (xpp.getName().equals("item")) {
-							// format the data here, otherwise format data in
-							// Adapter
+							
 							Date postDate = dateFormat.parse(pdData.postDate);
 							pdData.postDate = dateFormat.format(postDate);
 							postDataList.add(pdData);
+							Log.w("myApp","RETURNS: " + pdData.postContent);
 						} else {
 							currentTag = RSSXMLTag.IGNORETAG;
 						}
@@ -211,8 +216,11 @@ public class MainActivity extends Activity implements RefreshableInterface {
 								if (content.length() != 0) {
 									if (pdData.postLink != null) {
 										pdData.postLink += content;
+										Log.w("myApp", "link append");
 									} else {
 										pdData.postLink = content;
+										Log.w("myApp","added: " + content);
+										
 									}
 								}
 								break;
@@ -251,7 +259,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 
 					eventType = xpp.next();
 				}
-				Log.v("tst", String.valueOf(postDataList.size()));
+				Log.v("size of data list", String.valueOf(postDataList.size()));
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				// new URL exception
@@ -278,12 +286,13 @@ public class MainActivity extends Activity implements RefreshableInterface {
 				// xpp.next()
 				
 			}
+			
 			return postDataList;
 		}
 
 		@Override
-		protected void onPostExecute(ArrayList<PostData> result) {   //insert data in arrayList
-			// TODO Auto-generated method stub
+		protected void onPostExecute(ArrayList<PostData> result) {   //onPost insert data in arrayList 
+			
 			boolean isupdated = false;
 			for (int i = 0; i < result.size(); i++) {
 				// check if the post is already in the list
@@ -296,8 +305,10 @@ public class MainActivity extends Activity implements RefreshableInterface {
 
 				if (isRefreshLoading) {
 					listData.add(i, result.get(i));
+					Log.w("myApp","resultGet: " + result.get(i).postContent);
 				} else {
 					listData.add(result.get(i));
+					Log.w("myApp","ElseResultGet: " + result.get(i).postContent);
 				}
 			}
 
@@ -319,7 +330,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 
 	@Override
 	public void startFresh() {
-		
+		//load or reload the rss feed
 		if (!isLoading) {
 			isRefreshLoading = true;
 			isLoading = true;
