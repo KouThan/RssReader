@@ -12,11 +12,11 @@
 
     <ImageView 
         android:id="@+id/postThumb"
-        android:layout_width="60dp"
+        android:layout_width="1dp"
         android:layout_height="60dp"
         
         android:scaleType="centerCrop"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginRight="4dp"/>
     
     
     
