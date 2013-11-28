@@ -5,7 +5,19 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.webkit.WebView;
 
-
+/*This one has to get changed 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 public class PostViewActivity extends Activity {
 
 	private WebView webView;

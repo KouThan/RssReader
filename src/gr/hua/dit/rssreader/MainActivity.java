@@ -54,17 +54,6 @@ public class MainActivity extends Activity implements RefreshableInterface {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_postlist);
-
-		// check connectivity state
-		/*
-		 * ConnectivityManager cm = (ConnectivityManager)
-		 * getSystemService(Context.CONNECTIVITY_SERVICE); NetworkInfo ni =
-		 * cm.getActiveNetworkInfo(); if (ni != null && ni.isConnected()) { new
-		 * RssDataController().execute(urlString + 0); } else {
-		 * 
-		 * }
-		 */
-
 		// check installation
 		SharedPreferences settings = getSharedPreferences(PREFERENCE_FILENAME,
 				0);
