@@ -154,6 +154,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 				is = connection.getInputStream();
 
 				// parse xml with custom handmade xml parser
+				//Uses XmlPullParser
 				XmlPullParserFactory factory = XmlPullParserFactory
 						.newInstance();
 				factory.setNamespaceAware(true);
@@ -198,7 +199,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 						content = content.trim();
 						if (pdData != null) {
 							switch (currentTag) {
-							case TITLE:
+							case TITLE:        //saving the text data from the rss fields into the ArrayList
 								if (content.length() != 0) {
 									if (pdData.postTitle != null) {
 										pdData.postTitle += content;
@@ -265,24 +266,24 @@ public class MainActivity extends Activity implements RefreshableInterface {
 				}
 				Log.v("size of data list", String.valueOf(postDataList.size()));
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
+				Log.e("Error", "MalformedURLException");
 				// new URL exception
 				
 			} catch (ProtocolException e) {
-				// TODO Auto-generated catch block
+				Log.e("Error", "ProtocolException");
 				// setRequestMethod exception
 				
 			} catch (XmlPullParserException e) {
-				// TODO Auto-generated catch block
+				Log.e("Error", "XmlPullParserException");
 				// XmlPullParserFactory.newInstance()
 				
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
+				Log.e("Error", "ParseException");
 				// dateFormat.parse(pdData.postDate);
 				
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				Log.e("Error", "IOException");
 				// openConnection()
 				// connection.getResponseCode()
 				// connection.connect();
@@ -290,7 +291,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 				// xpp.next()
 				
 			}
-			
+			//returns the array list with the parsed contents of the rss feed
 			return postDataList;
 		}
 
