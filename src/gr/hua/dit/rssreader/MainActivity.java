@@ -42,6 +42,8 @@ public class MainActivity extends Activity implements RefreshableInterface {
 
 	private ArrayList<PostData> listData;
 	private String urlString = "http://rss.in.gr/feed/news/greece/";
+	private String creator = "Athanassios Kountouras";
+	private String gitHubLink = "github.com/KouThan/RssReader";
 	private RefreshableListView postListView;
 	private PostItemAdapter postAdapter;
 	private boolean isRefreshLoading = true;
@@ -116,7 +118,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 			try {
 				appString = this.getPackageManager().getPackageInfo(
 						this.getPackageName(), 0).versionName;
-				appString = "Rss Reader Version " + appString + "\nBy Athanasios Kountouras";
+				appString = "Rss Reader Version " + appString + "\nBy " + creator+ "\nGitHub Link: " + gitHubLink;
 			} catch (NameNotFoundException e) {
 				Toast.makeText(this, "Get Version Name Error", Toast.LENGTH_SHORT).show();
 			}
