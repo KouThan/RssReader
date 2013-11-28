@@ -86,7 +86,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
-			// TODO Auto-generated method stub
+			//Create the list data view
 			PostData data = listData.get(arg2 - 1);
 
 			Bundle postInfo = new Bundle();
@@ -111,7 +111,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
+		//Present About info
 		switch (item.getItemId()) {
 		case R.id.actionAbout:
 			String appString = null;
@@ -132,10 +132,10 @@ public class MainActivity extends Activity implements RefreshableInterface {
 	private class RssDataController extends
 			AsyncTask<String, Integer, ArrayList<PostData>> {
 		private RSSXMLTag currentTag;
-
+		
 		@Override
-		protected ArrayList<PostData> doInBackground(String... params) {
-			// TODO Auto-generated method stub
+		protected ArrayList<PostData> doInBackground(String... params) {			//RSS feed parsing in the background
+			
 			String urlStr = params[0];
 			InputStream is = null;
 			ArrayList<PostData> postDataList = new ArrayList<PostData>();
@@ -282,7 +282,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 		}
 
 		@Override
-		protected void onPostExecute(ArrayList<PostData> result) {
+		protected void onPostExecute(ArrayList<PostData> result) {   //insert data in arrayList
 			// TODO Auto-generated method stub
 			boolean isupdated = false;
 			for (int i = 0; i < result.size(); i++) {
@@ -319,7 +319,7 @@ public class MainActivity extends Activity implements RefreshableInterface {
 
 	@Override
 	public void startFresh() {
-		// TODO Auto-generated method stub
+		
 		if (!isLoading) {
 			isRefreshLoading = true;
 			isLoading = true;

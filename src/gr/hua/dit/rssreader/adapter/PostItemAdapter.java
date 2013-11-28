@@ -37,7 +37,7 @@ public class PostItemAdapter extends ArrayAdapter<PostData> {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder viewHolder;
-
+		//psesent the titles in the listView
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.postitem, null);
 
